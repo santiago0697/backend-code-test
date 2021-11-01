@@ -5,7 +5,7 @@ interface GeniallyRepository {
 
   find(id: string): Promise<Genially>;
 
-  delete(id: string): Promise<void>;
+  delete(genially: Genially): Promise<void>;
 }
 
 export default GeniallyRepository;

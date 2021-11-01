@@ -1,6 +1,6 @@
 import InMemoryGeniallyRepository from "../mock/InMemoryGeniallyRepository";
 import CreateGeniallyService from "../../../../../src/contexts/core/genially/application/CreateGeniallyService";
-import * as faker from "faker";
+import faker from "faker";
 import GeniallyNameInvalidLength from "../../../../../src/contexts/core/genially/domain/Exception/GeniallyNameInvalidLength";
 import GeniallyDescriptionInvalidLength from "../../../../../src/contexts/core/genially/domain/Exception/GeniallyDescriptionInvalidLength";
 

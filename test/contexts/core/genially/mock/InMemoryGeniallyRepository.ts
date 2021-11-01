@@ -5,7 +5,7 @@ export default class InMemoryGeniallyRepository implements GeniallyRepository {
   private geniallys: Genially[] = [];
 
   async save(genially: Genially): Promise<void> {
-    await this.delete(genially.id);
+    this.geniallys = this.geniallys.filter((_genially) => genially.id !== _genially.id);
     this.geniallys.push(genially);
   }
 
@@ -13,7 +13,11 @@ export default class InMemoryGeniallyRepository implements GeniallyRepository {
     return this.geniallys.find((genially) => genially.id === id);
   }
 
-  async delete(id: string): Promise<void> {
-    this.geniallys = this.geniallys.filter((genially) => genially.id !== id);
+  async delete(genially: Genially): Promise<void> {
+    await this.save(genially);
+  }
+
+  public clear(): void{
+      this.geniallys = [];
   }
 }
