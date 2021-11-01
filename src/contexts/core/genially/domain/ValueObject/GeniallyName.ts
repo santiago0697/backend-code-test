@@ -4,8 +4,6 @@ const MAX_LENGTH = 20;
 const MIN_LENGTH = 3;
 
 export default class GeniallyName {
-
-
     constructor(private _value: string) {
     }
 
@@ -15,7 +13,7 @@ export default class GeniallyName {
         return geniallyName;
     }
 
-    private validate() {
+    protected validate(): void {
         if (this._value.length < MIN_LENGTH || this._value.length > MAX_LENGTH) {
             throw new GeniallyNameInvalidLength();
         }
