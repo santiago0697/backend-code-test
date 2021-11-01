@@ -1,5 +1,6 @@
 import Genially from "../domain/Genially";
 import GeniallyRepository from "../domain/GeniallyRepository";
+import GeniallyName from "../domain/ValueObject/GeniallyName";
 
 type CreateGeniallyServiceRequest = {
   id: string;
@@ -12,8 +13,9 @@ export default class CreateGeniallyService {
 
   public async execute(req: CreateGeniallyServiceRequest): Promise<Genially> {
     const { id, name, description } = req;
+    const geniallyName = GeniallyName.create(name);
 
-    const genially = new Genially(id, name, description);
+    const genially = new Genially(id, geniallyName, description);
 
     await this.repository.save(genially);
 

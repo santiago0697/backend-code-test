@@ -1,12 +1,14 @@
+import GeniallyName from "./ValueObject/GeniallyName";
+
 export default class Genially {
   private _id: string;
-  private _name: string;
+  private _name: GeniallyName;
   private _description: string;
   private _createdAt: Date;
   private _modifiedAt: Date;
   private _deletedAt: Date;
 
-  constructor(id: string, name: string, description?: string) {
+  constructor(id: string, name: GeniallyName, description?: string) {
     this._id = id;
     this._name = name;
     this._description = description;
@@ -17,7 +19,7 @@ export default class Genially {
     return this._id;
   }
 
-  get name(): string {
+  get name(): GeniallyName {
     return this._name;
   }
 
