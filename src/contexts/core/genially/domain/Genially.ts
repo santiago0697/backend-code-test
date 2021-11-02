@@ -41,4 +41,9 @@ export default class Genially {
   public delete(): void {
     this._deletedAt = new Date();
   }
+
+  public rename(name: GeniallyName): void {
+    this._modifiedAt = new Date();
+    this._name = name;
+  }
 }

@@ -12,7 +12,6 @@ const service = new DeleteGeniallyService(repository);
 let genially: Genially;
 
 beforeEach(async () => {
-    //preparas mocks
     genially = new Genially(
         faker.datatype.uuid(),
         new GeniallyName(faker.datatype.string(5)),
@@ -25,7 +24,7 @@ afterAll(async () => {
     repository.clear();
 });
 
-describe("DeleteGeniallyService", async () => {
+describe("DeleteGeniallyService", () => {
     it("Should delete an existing genially", async () => {
         await service.execute(genially.id);
         await expect(repository.find(genially.id)).resolves.toBeDefined();
