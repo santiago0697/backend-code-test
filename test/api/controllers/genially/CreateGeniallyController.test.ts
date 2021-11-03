@@ -30,4 +30,17 @@ describe("POST /genially", () => {
             .send(requestBody)
             .expect(400);
     });
+
+    it("Should response 400 if description length its invalid", async () => {
+        const requestBody = {
+            id: faker.datatype.uuid,
+            name: faker.datatype.string(10),
+            description: faker.datatype.string(150)
+        };
+
+        request
+            .post("/genially")
+            .send(requestBody)
+            .expect(400);
+    });
 });
