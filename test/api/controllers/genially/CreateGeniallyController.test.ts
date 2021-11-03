@@ -12,23 +12,19 @@ describe("POST /genially", () => {
             description: faker.datatype.string(100)
         };
 
-        request
-            .post("/genially")
-            .send(requestBody)
-            .expect(201)
+        const response = await request.post("/genially").send(requestBody);
+        expect(response.status).toBe(201);
     });
 
     it("Should response 400 if name length its invalid", async () => {
         const requestBody = {
             id: faker.datatype.uuid,
-            name: faker.datatype.string(3),
+            name: faker.datatype.string(30),
             description: faker.datatype.string(100)
         };
 
-        request
-            .post("/genially")
-            .send(requestBody)
-            .expect(400);
+        const response = await request.post("/genially").send(requestBody);
+        expect(response.status).toBe(400);
     });
 
     it("Should response 400 if description length its invalid", async () => {
@@ -38,9 +34,7 @@ describe("POST /genially", () => {
             description: faker.datatype.string(150)
         };
 
-        request
-            .post("/genially")
-            .send(requestBody)
-            .expect(400);
+        const response = await request.post("/genially").send(requestBody);
+        expect(response.status).toBe(400);
     });
 });

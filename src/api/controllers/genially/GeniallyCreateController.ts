@@ -8,7 +8,7 @@ export default async (req: Request, res: Response) => {
   const createGeniallyRequest = req.body;
   try {
     await service.execute(createGeniallyRequest);
-    res.status(200).send();
+    res.status(201).send();
   } catch (err) {
     res.status(400).send({error: err.message});
   }
