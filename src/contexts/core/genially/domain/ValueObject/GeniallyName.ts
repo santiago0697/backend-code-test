@@ -15,7 +15,7 @@ export default class GeniallyName {
 
     protected validate(): void {
         if (this._value.length < MIN_LENGTH || this._value.length > MAX_LENGTH) {
-            throw new GeniallyNameInvalidLength();
+            throw new GeniallyNameInvalidLength(MIN_LENGTH, MAX_LENGTH);
         }
     }
 

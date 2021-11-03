@@ -14,7 +14,7 @@ export default class GeniallyDescription {
 
     protected validate() {
         if (this._value.length > MAX_LENGTH) {
-            throw new GeniallyDescriptionInvalidLength();
+            throw new GeniallyDescriptionInvalidLength(MAX_LENGTH);
         }
     }
 
