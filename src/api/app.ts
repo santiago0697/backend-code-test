@@ -7,6 +7,7 @@ import lusca from "lusca";
 import * as healthController from "./controllers/health";
 import GeniallyCreateController from "./controllers/genially/GeniallyCreateController";
 import GeniallyDeleteController from "./controllers/genially/GeniallyDeleteController";
+import GeniallyRenameController from "./controllers/genially/GeniallyRenameController";
 
 // Create Express server
 const app = express();
@@ -23,5 +24,6 @@ app.use(lusca.xssProtection(true));
 app.get("/", healthController.check);
 app.post("/genially", GeniallyCreateController);
 app.delete("/genially/:id", GeniallyDeleteController);
+app.put("/genially/:id", GeniallyRenameController);
 
 export default app;

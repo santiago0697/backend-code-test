@@ -17,7 +17,7 @@ export default class CreateGeniallyService {
     const geniallyName = GeniallyName.create(name);
     const geniallyDescription = GeniallyDescription.create(description);
 
-    const genially = new Genially(id, geniallyName, geniallyDescription);
+    const genially = Genially.create(id, geniallyName, geniallyDescription);
 
     await this.repository.save(genially);
 

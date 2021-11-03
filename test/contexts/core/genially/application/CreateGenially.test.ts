@@ -21,6 +21,7 @@ describe('CreateGeniallyService', () => {
 
         expect(geniallyCreated.name.value).toEqual(geniallyServiceRequest.name);
         expect(geniallyCreated.description.value).toEqual(geniallyServiceRequest.description);
+        expect(geniallyCreated.createdAt).toBeDefined();
     });
 
     it('Should throw exception when name is more than 20 characters', async () => {

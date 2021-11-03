@@ -27,7 +27,9 @@ afterAll(async () => {
 describe("DeleteGeniallyService", () => {
     it("Should delete an existing genially", async () => {
         await service.execute(genially.id);
-        await expect(repository.find(genially.id)).resolves.toBeDefined();
+        const geniallyDeleted = await repository.find(genially.id);
+        expect(geniallyDeleted).toBeDefined();
+        expect(geniallyDeleted.deletedAt).toBeDefined();
     });
 
     it('Should throw error when delete one that not exists', async () => {
