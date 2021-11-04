@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import faker from "faker";
 import InMemoryGeniallyRepository from "../mock/InMemoryGeniallyRepository";
 import RenameGeniallyService from "../../../../../src/contexts/core/genially/application/RenameGeniallyService";

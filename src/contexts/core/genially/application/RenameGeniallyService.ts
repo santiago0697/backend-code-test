@@ -1,12 +1,14 @@
+import { inject, injectable } from "inversify";
 import Genially from "../domain/Genially";
 import GeniallyFinder from "../domain/GeniallyFinder";
 import GeniallyRepository from "../domain/GeniallyRepository";
 import GeniallyName from "../domain/ValueObject/GeniallyName";
 
+@injectable()
 export default class RenameGeniallyService {
   private readonly geniallyFinder: GeniallyFinder
 
-  constructor(private readonly repository: GeniallyRepository){
+  constructor(@inject("GeniallyRepository") private readonly repository: GeniallyRepository) {
     this.geniallyFinder = new GeniallyFinder(this.repository);
   }
 

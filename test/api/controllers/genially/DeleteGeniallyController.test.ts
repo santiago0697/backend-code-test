@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import supertest from "supertest";
 import app from "../../../../src/api/app";
 import faker from "faker";

@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import faker from "faker";
 import Genially from "../../../../../src/contexts/core/genially/domain/Genially";
 import GeniallyDescription from "../../../../../src/contexts/core/genially/domain/ValueObject/GeniallyDescription";

@@ -1,6 +1,8 @@
 import Genially from "../domain/Genially";
 import GeniallyRepository from "../domain/GeniallyRepository";
+import { injectable } from "inversify";
 
+@injectable()
 export default class InMemoryGeniallyRepository implements GeniallyRepository {
   private static geniallys: Genially[] = [];
 
