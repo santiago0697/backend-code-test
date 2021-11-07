@@ -1,11 +1,8 @@
 import { Response, Request } from "express";
 import GeniallyNotExist from "../../../contexts/core/genially/domain/Exception/GeniallyNotExist";
 import RenameGeniallyService from "../../../contexts/core/genially/application/RenameGeniallyService";
-import InMemoryGeniallyRepository from "../../../contexts/core/genially/infrastructure/InMemoryGeniallyRepository";
 import GeniallyNameInvalidLength from "../../../contexts/core/genially/domain/Exception/GeniallyNameInvalidLength";
 import { inject, injectable } from "inversify";
-
-const service = new RenameGeniallyService(new InMemoryGeniallyRepository());
 
 @injectable()
 export default class GeniallyRenameController {
@@ -16,7 +13,7 @@ export default class GeniallyRenameController {
         const newName = req.body.name;
 
         try {
-            await service.execute(geniallyId, newName);
+            await this.service.execute(geniallyId, newName);
             res.status(204).send();
         } catch (error) {
             switch (error.constructor) {
@@ -27,6 +24,7 @@ export default class GeniallyRenameController {
                     res.status(400).send({ error: error.message });
                     break;
                 default:
+                    console.error(error)
                     res.status(500).send();
             }
         }

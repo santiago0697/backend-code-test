@@ -1,11 +1,11 @@
 import { Container } from "inversify";
-import InMemoryGeniallyRepository from "../../../../../contexts/core/genially/infrastructure/InMemoryGeniallyRepository";
-import CreateGeniallyService from "../../../../../contexts/core/genially/application/CreateGeniallyService";
+import CreateGeniallyService from "../../../genially/application/CreateGeniallyService";
 import GeniallyCreateController from "../../../../../api/controllers/genially/GeniallyCreateController";
 import GeniallyDeleteController from "../../../../../api/controllers/genially/GeniallyDeleteController";
-import DeleteGeniallyService from "../../../../../contexts/core/genially/application/DeleteGeniallyService";
+import DeleteGeniallyService from "../../../genially/application/DeleteGeniallyService";
 import GeniallyRenameController from "../../../../../api/controllers/genially/GeniallyRenameController";
-import RenameGeniallyService from "../../../../../contexts/core/genially/application/RenameGeniallyService";
+import RenameGeniallyService from "../../../genially/application/RenameGeniallyService";
+import MongoDbGeniallyRepository from "../../../genially/infrastructure/MongoDbGeniallyRepository";
 
 export const inversifyContainer = (): Container => {
     const container = new Container();
@@ -20,7 +20,8 @@ export const inversifyContainer = (): Container => {
     container.bind(RenameGeniallyService.name).to(RenameGeniallyService).inRequestScope();
 
     //Repositories
-    container.bind("GeniallyRepository").to(InMemoryGeniallyRepository).inRequestScope();
+    //container.bind("GeniallyRepository").to(InMemoryGeniallyRepository).inRequestScope();
+    container.bind("GeniallyRepository").to(MongoDbGeniallyRepository).inRequestScope();
 
     return container;
 };

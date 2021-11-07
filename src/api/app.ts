@@ -1,3 +1,4 @@
+import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import compression from "compression";
 import express from "express";
@@ -8,7 +9,10 @@ import * as healthController from "./controllers/health";
 import GeniallyCreateController from "./controllers/genially/GeniallyCreateController";
 import GeniallyDeleteController from "./controllers/genially/GeniallyDeleteController";
 import GeniallyRenameController from "./controllers/genially/GeniallyRenameController";
-import { inversifyContainer } from "../contexts/core/shared/infrastructure/Container/InversifyContainer";
+import { inversifyContainer } from "../contexts/core/shared/infrastructure/container/InversifyContainer";
+
+// Load env vars
+dotenv.config();
 
 // Create Express server
 const app = express();
