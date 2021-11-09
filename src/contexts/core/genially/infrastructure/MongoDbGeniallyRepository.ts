@@ -5,7 +5,7 @@ import MongoDbClient from "../../shared/infrastructure/persistance/MongoDbClient
 
 @injectable()
 export default class MongoDbGeniallyRepository implements GeniallyRepository {
-    private collection: string = "genially";
+    private collection = "genially";
 
     async save(genially: Genially): Promise<void> {
         const db = await new MongoDbClient().getDb();
@@ -16,17 +16,17 @@ export default class MongoDbGeniallyRepository implements GeniallyRepository {
         );
     }
 
-    async find(id: string): Promise<Genially> {
+    async find(id: string): Promise<Genially | undefined> {
         const db = await new MongoDbClient().getDb();
-        const data = await db.collection(this.collection).findOne({ id })
-        if (data) {
-            const geniallyPrimitives: GeniallyPrimitives = {
-                id: data.id,
-                name: data.name,
-                description: data.description ?? undefined,
-                createdAt: data.createdAt ?? undefined,
-                modifiedAt: data.modifiedAt ?? undefined,
-                deletedAt: data.deletedAt ?? undefined,
+        const geniallyFound = await db.collection(this.collection).findOne({ id })
+        if (geniallyFound) {
+            const geniallyPrimitives = {
+                id: geniallyFound.id,
+                name: geniallyFound.name,
+                description: geniallyFound.description ?? undefined,
+                createdAt: geniallyFound.createdAt ?? undefined,
+                modifiedAt: geniallyFound.modifiedAt ?? undefined,
+                deletedAt: geniallyFound.deletedAt ?? undefined,
             };
 
             return Genially.buildFromPrimitives(geniallyPrimitives);
