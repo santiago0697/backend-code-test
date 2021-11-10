@@ -4,9 +4,11 @@ import CreateGeniallyService from "../../../../../src/contexts/core/genially/app
 import faker from "faker";
 import GeniallyNameInvalidLength from "../../../../../src/contexts/core/genially/domain/Exception/GeniallyNameInvalidLength";
 import GeniallyDescriptionInvalidLength from "../../../../../src/contexts/core/genially/domain/Exception/GeniallyDescriptionInvalidLength";
+import InMemoryEventBus from "../../shared/mock/InMemoryEventBus"
 
-const repository = new InMemoryGeniallyRepository()
-const service = new CreateGeniallyService(repository);
+const repository = new InMemoryGeniallyRepository();
+const eventBus = new InMemoryEventBus();
+const service = new CreateGeniallyService(repository, eventBus);
 
 describe('CreateGeniallyService', () => {
     it('Should create geanily correctly', async () => {

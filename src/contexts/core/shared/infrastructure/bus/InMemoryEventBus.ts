@@ -1,6 +1,6 @@
 import { injectable, multiInject } from "inversify";
-import { EventBus } from "../../domain/bus/EventBus";
-import { DomainEvent } from "../../domain/event/DomainEvent";
+import EventBus from "../../domain/bus/EventBus";
+import DomainEvent from "../../domain/event/DomainEvent";
 import EventHandler from "../../domain/event/EventHandler";
 
 @injectable()

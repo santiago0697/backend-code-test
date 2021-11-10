@@ -1,3 +1,5 @@
+import { AggregateRoot } from "../../shared/domain/AggregateRoot/AggregateRoot";
+import GeniallyCreatedEvent from "./Event/GeniallyCreatedEvent";
 import GeniallyDescription from "./ValueObject/GeniallyDescription";
 import GeniallyName from "./ValueObject/GeniallyName";
 
@@ -10,7 +12,7 @@ export type GeniallyPrimitives = {
   deletedAt?: Date,
 }
 
-export default class Genially {
+export default class Genially extends AggregateRoot {
   constructor(
     private _id: string,
     private _name: GeniallyName,
@@ -18,7 +20,9 @@ export default class Genially {
     private _createdAt?: Date,
     private _modifiedAt?: Date,
     private _deletedAt?: Date,
-  ) { }
+  ) {
+    super();
+  }
 
   get id(): string {
     return this._id;
@@ -54,7 +58,10 @@ export default class Genially {
   }
 
   public static create(id: string, name: GeniallyName, description: GeniallyDescription): Genially {
-    return new Genially(id, name, description, new Date());
+    const geniallyCreated = new Genially(id, name, description, new Date());
+    geniallyCreated.record(new GeniallyCreatedEvent(geniallyCreated.id, geniallyCreated.toPrimitives(), new Date()));
+
+    return geniallyCreated;
   }
 
   public toPrimitives(): GeniallyPrimitives {

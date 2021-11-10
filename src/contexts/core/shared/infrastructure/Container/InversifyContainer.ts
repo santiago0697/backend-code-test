@@ -6,6 +6,7 @@ import DeleteGeniallyService from "../../../genially/application/DeleteGeniallyS
 import GeniallyRenameController from "../../../../../api/controllers/genially/GeniallyRenameController";
 import RenameGeniallyService from "../../../genially/application/RenameGeniallyService";
 import MongoDbGeniallyRepository from "../../../genially/infrastructure/MongoDbGeniallyRepository";
+import InMemoryEventBus from "../bus/InMemoryEventBus";
 
 export const inversifyContainer = (): Container => {
     const container = new Container();
@@ -18,6 +19,7 @@ export const inversifyContainer = (): Container => {
     container.bind(CreateGeniallyService.name).to(CreateGeniallyService).inRequestScope();
     container.bind(DeleteGeniallyService.name).to(DeleteGeniallyService).inRequestScope();
     container.bind(RenameGeniallyService.name).to(RenameGeniallyService).inRequestScope();
+    container.bind("EventBus").to(InMemoryEventBus).inSingletonScope();
 
     //Repositories
     //container.bind("GeniallyRepository").to(InMemoryGeniallyRepository).inRequestScope();
