@@ -7,6 +7,9 @@ import GeniallyRenameController from "../../../../../api/controllers/genially/Ge
 import RenameGeniallyService from "../../../genially/application/RenameGeniallyService";
 import MongoDbGeniallyRepository from "../../../genially/infrastructure/MongoDbGeniallyRepository";
 import InMemoryEventBus from "../bus/InMemoryEventBus";
+import GeniallyIncreaseCounter from "../../../../../contexts/core/geniallyCounter/application/GeniallyIncreaseCounter";
+import MongoDbGeniallyCounterRepository from "../../../../../contexts/core/geniallyCounter/infrastructure/MongoDbGeniallyCounterRepository";
+import IncreaseCounterOnGeniallyCreated from "../../../../../contexts/core/geniallyCounter/application/IncreaseCounterOnGeniallyCreated";
 
 export const inversifyContainer = (): Container => {
     const container = new Container();
@@ -19,11 +22,16 @@ export const inversifyContainer = (): Container => {
     container.bind(CreateGeniallyService.name).to(CreateGeniallyService).inRequestScope();
     container.bind(DeleteGeniallyService.name).to(DeleteGeniallyService).inRequestScope();
     container.bind(RenameGeniallyService.name).to(RenameGeniallyService).inRequestScope();
+    container.bind(GeniallyIncreaseCounter.name).to(GeniallyIncreaseCounter).inRequestScope();
     container.bind("EventBus").to(InMemoryEventBus).inSingletonScope();
+
+    // Event handlers
+    container.bind("EventHandler").to(IncreaseCounterOnGeniallyCreated);
 
     //Repositories
     //container.bind("GeniallyRepository").to(InMemoryGeniallyRepository).inRequestScope();
     container.bind("GeniallyRepository").to(MongoDbGeniallyRepository).inRequestScope();
+    container.bind("GeniallyCounterRepository").to(MongoDbGeniallyCounterRepository).inRequestScope();
 
     return container;
 };

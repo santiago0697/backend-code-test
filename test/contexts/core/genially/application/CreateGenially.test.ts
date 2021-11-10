@@ -5,10 +5,16 @@ import faker from "faker";
 import GeniallyNameInvalidLength from "../../../../../src/contexts/core/genially/domain/Exception/GeniallyNameInvalidLength";
 import GeniallyDescriptionInvalidLength from "../../../../../src/contexts/core/genially/domain/Exception/GeniallyDescriptionInvalidLength";
 import InMemoryEventBus from "../../shared/mock/InMemoryEventBus"
+import GeniallyCreatedEvent from "../../../../../src/contexts/core/genially/domain/Event/GeniallyCreatedEvent";
 
 const repository = new InMemoryGeniallyRepository();
 const eventBus = new InMemoryEventBus();
 const service = new CreateGeniallyService(repository, eventBus);
+
+afterAll(() => {
+    eventBus.clear();
+    repository.clear();
+});
 
 describe('CreateGeniallyService', () => {
     it('Should create geanily correctly', async () => {
@@ -25,6 +31,9 @@ describe('CreateGeniallyService', () => {
         expect(geniallyCreated.name.value).toEqual(geniallyServiceRequest.name);
         expect(geniallyCreated.description.value).toEqual(geniallyServiceRequest.description);
         expect(geniallyCreated.createdAt).toBeDefined();
+
+        expect(eventBus.events).toHaveLength(1);
+        expect(eventBus.events.shift().eventName).toBe(GeniallyCreatedEvent.EVENT_NAME);
     });
 
     it('Should throw exception when name is more than 20 characters', async () => {

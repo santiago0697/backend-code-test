@@ -1,7 +1,9 @@
+import { injectable } from "inversify";
 import MongoDbClient from "../../shared/infrastructure/persistance/MongoDbClient";
 import GeniallyCounter, { GeniallyCounterPrimitives } from "../domain/GeniallyCounter";
 import GeniallyCounterRepository from "../domain/GeniallyCounterRepository";
 
+@injectable()
 export default class MongoDbGeniallyCounterRepository implements GeniallyCounterRepository {
     private collection = "GeniallyCounter";
 

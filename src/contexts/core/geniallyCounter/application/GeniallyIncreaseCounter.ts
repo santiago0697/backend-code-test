@@ -1,7 +1,8 @@
-import { inject } from "inversify";
+import { inject, injectable } from "inversify";
 import GeniallyCounterRepository from "../domain/GeniallyCounterRepository";
 import GetCurrentGeniallyCounter from "../domain/GetCurrentGeniallyCounter";
 
+@injectable()
 export default class GeniallyIncreaseCounter {
     private getCurrentGeniallyCounter: GetCurrentGeniallyCounter;
 

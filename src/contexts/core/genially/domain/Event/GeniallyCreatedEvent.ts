@@ -1,7 +1,9 @@
 import DomainEvent from "../../../../../contexts/core/shared/domain/event/DomainEvent";
 
 export default class GeniallyCreatedEvent extends DomainEvent {
+    public static EVENT_NAME = "genially.created";
+
     public get eventName(): string {
-        return "genially.created"
+        return GeniallyCreatedEvent.EVENT_NAME;
     }
 }

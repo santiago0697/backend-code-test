@@ -22,7 +22,7 @@ export default class InMemoryEventBus implements EventBus {
 
     private groupHandlersByEvent(): void {
         this.eventHandlers.forEach((eventHandler: EventHandler) => {
-            const { eventName } = eventHandler.subscribedTo();
+            const eventName = eventHandler.subscribedTo();
 
             const handlerGroup = this.handlers.get(eventName);
             if (!handlerGroup) {
