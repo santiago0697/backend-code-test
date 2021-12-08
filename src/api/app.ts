@@ -9,7 +9,7 @@ import * as healthController from "./controllers/health";
 import GeniallyCreateController from "./controllers/genially/GeniallyCreateController";
 import GeniallyDeleteController from "./controllers/genially/GeniallyDeleteController";
 import GeniallyRenameController from "./controllers/genially/GeniallyRenameController";
-import { inversifyContainer } from "../contexts/core/shared/infrastructure/container/InversifyContainer";
+import { inversifyContainer } from "../contexts/core/shared/infrastructure/Container/InversifyContainer";
 
 // Load env vars
 dotenv.config();
